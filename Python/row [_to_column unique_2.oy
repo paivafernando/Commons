@@ -1,0 +1,15 @@
+import pandas as pd
+import numpy as np 
+raw_data = pd.read_csv('Aeronave.csv', encoding='latin-1', sep=';', keep_default_na=False) np.set_printoptions(
+linewidth=7000,
+edgeitems=4,
+threshold=8
+) 
+def fun(val):
+lista = raw_data[val].unique()
+tratamento = np.vectorize(lambda x: str(x).strip())
+return tratamento(lista) 
+tmp=[fun(col) for col in raw_data] 
+resultString = ';'.join(map(str, raw_data.columns))
+resultString += '\n'
+resultString += ';'.join(map(str, tmp))
